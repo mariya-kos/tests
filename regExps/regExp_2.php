@@ -3,7 +3,7 @@ $filename = 'html_to_parse.txt';
 $html = fopen($filename, 'r+');
 $htmlText = fread($html, filesize($filename));
 
-$mask = '/attr__name\">(<span.[^<]*<\/span>)?(?<header>.[^<]*)<\/span><span class="attr__value\">(?<value>.[^<]*)<\/span/imu';
+$mask = '/(attr__name\">|<\/span>)(?<header>[^<]+)<\/span>\s*<span class="attr__value\">(?<value>.[^<]*)<\/span/imu';
 $htmlText = preg_replace('/\t*\n*/ium', '', $htmlText);
 preg_match_all($mask, $htmlText, $data);
 
